@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using PetProject2026.Context;
+using PetProject2026.Services.Implementations;
+using PetProject2026.Services.Interfaces;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BookingContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("MyConnectionString")));
+builder.Services.AddScoped<IRoomService, RoomService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
