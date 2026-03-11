@@ -36,6 +36,12 @@ namespace PetProject2026.Controllers
             return Ok("Booking created successfully");
         }
 
+        [HttpPut("id")]
+        public async Task<ActionResult<Booking>> UpdateBooking(int id, UpdateBookingDto updateBookingDto)
+        {
+            return Ok();
+        }
+
         [HttpDelete("id")]
         public async Task<ActionResult> DeleteBookingById(int id)
         {

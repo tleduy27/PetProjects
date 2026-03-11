@@ -49,7 +49,7 @@ namespace PetProject2026.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("id")]
         public async Task<ActionResult<Room>> UpdateRoomById(int id, UpdateRoomDto updateRoomDto)
         {
             return Ok("Ok");
