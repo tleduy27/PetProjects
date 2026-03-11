@@ -23,6 +23,13 @@ namespace PetProject2026.Controllers
             var room = await _roomService.GetAllRoom();
             return Ok(room);
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Room>> GetRoomById(int id)
+        {
+            var room = _roomService.GetRoomById(id);
+
+            return Ok(room);
+        }
         [HttpPost("create-room")]
         public async Task<ActionResult<Room>> CreateRoom(CreateRoomDto request)
         {
@@ -40,15 +47,21 @@ namespace PetProject2026.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoomById(int id)
-        {
-            var room = _roomService.GetRoomById(id);
 
-            return Ok(room);
+        [HttpPut]
+        public async Task<ActionResult<Room>> UpdateRoomById(int id, UpdateRoomDto updateRoomDto)
+        {
+            return Ok("Ok");
         }
+
+        [HttpDelete("id")]
+        public async Task<ActionResult> DeleteRoomById(int id)
+        {   
+            return Ok();
+        }
+
+        
 
         
 

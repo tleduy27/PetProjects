@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PetProject2026.Context;
 using PetProject2026.DTOs;
@@ -16,11 +17,31 @@ namespace PetProject2026.Controllers
         {
             _bookingService = bookingService;
         }
+        [HttpGet("Get-all-booking")]
+        public async Task<ActionResult<List<Booking>>> GetAllBooking()
+        {
+            return Ok();
+        }
+
+        [HttpGet("id")]
+        public async Task<ActionResult<Booking>> GetBookingById(int id)
+        {
+            return Ok();
+        }
+
         [HttpPost("create-booking")]
         public async Task<ActionResult> CreateBooking(CreateBookingDto request)
         {
             var booking = await _bookingService.CreateBooking(request);
             return Ok("Booking created successfully");
         }
+
+        [HttpDelete("id")]
+        public async Task<ActionResult> DeleteBookingById(int id)
+        {
+            return Ok();
+        }
+
+        
     }
 }
