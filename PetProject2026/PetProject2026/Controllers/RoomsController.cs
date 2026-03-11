@@ -26,7 +26,7 @@ namespace PetProject2026.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoomById(int id)
         {
-            var room = _roomService.GetRoomById(id);
+            var room = await _roomService.GetRoomById(id);
 
             return Ok(room);
         }
@@ -49,16 +49,18 @@ namespace PetProject2026.Controllers
             }
         }
 
-        [HttpPut("id")]
-        public async Task<ActionResult<Room>> UpdateRoomById(int id, UpdateRoomDto updateRoomDto)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<RoomDto>> UpdateRoomById(int id, UpdateRoomDto updateRoomDto)
         {
-            return Ok("Ok");
+            var room = await _roomService.UpdateRoom(id, updateRoomDto);   
+            return Ok("Update Success");
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteRoomById(int id)
         {   
-            return Ok();
+            await _roomService.DeleteRoomById(id);
+            return NoContent();
         }
 
         

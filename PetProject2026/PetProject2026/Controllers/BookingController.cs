@@ -20,13 +20,15 @@ namespace PetProject2026.Controllers
         [HttpGet("Get-all-booking")]
         public async Task<ActionResult<List<Booking>>> GetAllBooking()
         {
-            return Ok();
+            var booking = await _bookingService.GetAllBooking();
+            return Ok(booking);
         }
 
         [HttpGet("id")]
-        public async Task<ActionResult<Booking>> GetBookingById(int id)
+        public async Task<ActionResult<BookingDto>> GetBookingById(int id)
         {
-            return Ok();
+            var booking = await _bookingService.GetBookingById(id);
+            return Ok(booking);
         }
 
         [HttpPost("create-booking")]
@@ -39,13 +41,15 @@ namespace PetProject2026.Controllers
         [HttpPut("id")]
         public async Task<ActionResult<Booking>> UpdateBooking(int id, UpdateBookingDto updateBookingDto)
         {
-            return Ok();
+            var booking = await _bookingService.UpdateBooking(id, updateBookingDto);
+            return Ok(booking);
         }
 
         [HttpDelete("id")]
         public async Task<ActionResult> DeleteBookingById(int id)
         {
-            return Ok();
+           var booking = _bookingService.DeleteBookingById(id);
+            return NoContent();
         }
 
         
