@@ -1,16 +1,16 @@
 ﻿using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using PetProject2026.Context;
-using PetProject2026.DTOs;
+using PetProject2026.DTOs.DTORoom;
 using PetProject2026.Models;
 using PetProject2026.Services.Implementations;
 
 namespace PetProject2026.Services.Interfaces
 {
-    public class RoomService : IRoomService
+    public class ImplsRoomService : IRoomService
     {
         private readonly BookingContext _bookingContext;
-        public RoomService(BookingContext bookingContext) {
+        public ImplsRoomService(BookingContext bookingContext) {
         _bookingContext = bookingContext;
         }
 

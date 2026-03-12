@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PetProject2026.Context;
-using PetProject2026.DTOs;
+using PetProject2026.DTOs.DTOBooking;
 using PetProject2026.Models;
 using PetProject2026.Services.Implementations;
 
 namespace PetProject2026.Services.Interfaces
 {
-    public class BookingService : IBookingService
+    public class ImplsBookingService : IBookingService
     {
         private readonly BookingContext _bookingContext;
-        public BookingService(BookingContext bookingContext)
+        public ImplsBookingService(BookingContext bookingContext)
         {
             _bookingContext = bookingContext;
         }

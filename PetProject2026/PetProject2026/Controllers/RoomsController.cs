@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetProject2026.Context;
-using PetProject2026.DTOs;
+using PetProject2026.DTOs.DTORoom;
 using PetProject2026.Models;
 using PetProject2026.Services.Implementations;
 

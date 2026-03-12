@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetProject2026.Context;
 
@@ -11,9 +12,11 @@ using PetProject2026.Context;
 namespace PetProject2026.Migrations
 {
     [DbContext(typeof(BookingContext))]
-    partial class BookingContextModelSnapshot : ModelSnapshot
+    [Migration("20260311105726_MigrationUserrole")]
+    partial class MigrationUserrole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,23 +53,6 @@ namespace PetProject2026.Migrations
                     b.ToTable("bookings");
                 });
 
-            modelBuilder.Entity("PetProject2026.Models.Role", b =>
-                {
-                    b.Property<int>("roleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("roleId"));
-
-                    b.Property<string>("roleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("roleId");
-
-                    b.ToTable("roles");
-                });
-
             modelBuilder.Entity("PetProject2026.Models.Room", b =>
                 {
                     b.Property<int>("roomId")
@@ -87,32 +73,6 @@ namespace PetProject2026.Migrations
                     b.ToTable("rooms");
                 });
 
-            modelBuilder.Entity("PetProject2026.Models.User", b =>
-                {
-                    b.Property<int>("userId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("userId"));
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("roleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("userId");
-
-                    b.HasIndex("roleId");
-
-                    b.ToTable("users");
-                });
-
             modelBuilder.Entity("PetProject2026.Models.Booking", b =>
                 {
                     b.HasOne("PetProject2026.Models.Room", "room")
@@ -122,22 +82,6 @@ namespace PetProject2026.Migrations
                         .IsRequired();
 
                     b.Navigation("room");
-                });
-
-            modelBuilder.Entity("PetProject2026.Models.User", b =>
-                {
-                    b.HasOne("PetProject2026.Models.Role", "role")
-                        .WithMany("Users")
-                        .HasForeignKey("roleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("role");
-                });
-
-            modelBuilder.Entity("PetProject2026.Models.Role", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("PetProject2026.Models.Room", b =>

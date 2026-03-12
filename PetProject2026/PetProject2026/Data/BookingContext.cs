@@ -12,5 +12,7 @@ namespace PetProject2026.Context
         }
         public DbSet<Booking> bookings { get; set; }
         public DbSet<Room> rooms { get; set; }
+        public DbSet<User> users { get; set; }
+        public DbSet<Role> roles { get; set; }
     }
 }
