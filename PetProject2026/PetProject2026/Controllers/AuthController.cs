@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetProject2026.DTOs.DTOAuth;
 using PetProject2026.DTOs.DTOUser;
@@ -26,6 +27,15 @@ namespace PetProject2026.Controllers
         {
             var login = await _authorService.LoginAsync(request);
             return Ok(login);
+        }
+
+        [Authorize]
+        [HttpPut("change-password")]
+        public async Task<ActionResult> changePassword(ChangePassworDto changePassworDto)
+        {
+            int userId = int.Parse(User.FindFirst("userId").Value);
+            await _authorService.ChangePassword(userId, changePassworDto);
+            return Ok("Password changed successfully");
         }
     }
 }

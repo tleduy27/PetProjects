@@ -6,6 +6,7 @@ namespace PetProject2026.Services.Implementations
     {
         Task<RegisterDto> RegisterAsync(RegisterDto request);
         Task<LoginResponseDTO> LoginAsync(LoginDTO request);
+        Task ChangePassword(int userId, ChangePassworDto changePassworDto);
 
     }
 }

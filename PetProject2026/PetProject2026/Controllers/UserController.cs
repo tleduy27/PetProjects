@@ -20,11 +20,12 @@ namespace PetProject2026.Controllers
             return Ok();
         }
 
-        //[HttpPut]
-        //public async Task<ActionResult<UpdateUserDto>> updateUserById(int id, CreateUserDto updateUserDto)
-        //{
-        //    return Ok();
-        //}
+        [HttpPut]
+        public async Task<ActionResult<UpdateUserDto>> updateUserById(int id, UpdateUserDto updateUserDto)
+        {
+            return Ok();
+        }
+
         [HttpDelete]
         public async Task<ActionResult> deleteUser(int id)
         {

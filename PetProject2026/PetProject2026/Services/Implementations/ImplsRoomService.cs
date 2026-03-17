@@ -19,9 +19,9 @@ namespace PetProject2026.Services.Interfaces
         {
             var rooms = await _bookingContext.rooms.Select(r => new RoomDto
             {
-                Id = r.roomId,
+                Id = int.Parse(r.roomId),
                 Name = r.roomName,
-                Price = r.roomPrice
+                Price = r.price
             }).ToListAsync();
             return rooms;
         }
@@ -43,7 +43,7 @@ namespace PetProject2026.Services.Interfaces
             var room = new Room
             {
                 roomName = request.rName,
-                roomPrice = request.rPrice
+                price = request.rPrice
             };
             _bookingContext.rooms.Add(room);
             await _bookingContext.SaveChangesAsync();
@@ -58,14 +58,14 @@ namespace PetProject2026.Services.Interfaces
             if (room == null) throw new Exception("Room not found");
             //b3:Update data
             room.roomName = request.Name;
-            room.roomPrice = request.Price;
+            room.price = request.Price;
             //b4: save db
             await _bookingContext.SaveChangesAsync();
             //b5: return dto
             return new UpdateRoomDto
             {
                 Name = room.roomName,
-                Price = room.roomPrice,
+                Price = room.price,
             };
         }
         public async Task DeleteRoomById(int id)

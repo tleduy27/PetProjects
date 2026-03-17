@@ -67,6 +67,7 @@ namespace PetProject2026.Services.Interfaces
         {
             var claims = new[]
             {
+                new Claim("userId", user.userId.ToString()),
                 new Claim("email", user.email),
                 new Claim("role", user.roleId.ToString())
             };
@@ -80,6 +81,18 @@ namespace PetProject2026.Services.Interfaces
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task ChangePassword(int userId, ChangePassworDto changePassworDto)
+        {
+            var user = await bookingContext.users.FindAsync(userId);
+            if (user == null) throw new Exception("User not found");
+            if(changePassworDto.OldPassword != user.password)
+            {
+                throw new Exception("Old password incorrect");
+            }
+            user.password = changePassworDto.NewPassword;
+            await bookingContext.SaveChangesAsync();
         }
     }
 }

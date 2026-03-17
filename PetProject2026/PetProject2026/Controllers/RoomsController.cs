@@ -30,6 +30,11 @@ namespace PetProject2026.Controllers
 
             return Ok(room);
         }
+        [HttpGet("Get-room-available")]
+        public async Task<ActionResult> getRoomAvailable()
+        {
+            return Ok();
+        }
         [HttpPost("create-room")]
         public async Task<ActionResult<Room>> CreateRoom(CreateRoomDto request)
         {
