@@ -7,7 +7,9 @@
         public string customerName { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
-        public Room room { get; set; }
+        public ICollection<BookedRoom> bookedRooms { get; set; }
+        public Client Client { get; set; }
+        public ICollection<Bill> bills { get; set; }
         
     }
 }

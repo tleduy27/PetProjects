@@ -2,9 +2,13 @@
 {
     public class Room
     {
-        public int roomId { get; set; }
+        public string roomId { get; set; }
+        public string roomType { get; set; }
         public string roomName { get; set; }
-        public decimal roomPrice { get; set; }
-        public ICollection<Booking> bookings { get; set; } = new List<Booking>();
+        public decimal price { get; set; }
+        public string description { get; set; }
+        public int hotelId { get; set; }
+        public Hotel hotel { get; set; }
+        public ICollection<BookedRoom> bookedRooms { get; set; }
     }
 }

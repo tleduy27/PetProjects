@@ -1,4 +1,4 @@
-﻿using PetProject2026.DTOs;
+﻿using PetProject2026.DTOs.DTORoom;
 using PetProject2026.Models;
 
 namespace PetProject2026.Services.Implementations

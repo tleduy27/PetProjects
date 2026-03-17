@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetProject2026.Context;
-using PetProject2026.DTOs;
+using PetProject2026.DTOs.DTORoom;
 using PetProject2026.Models;
 using PetProject2026.Services.Implementations;
 
@@ -29,6 +29,11 @@ namespace PetProject2026.Controllers
             var room = await _roomService.GetRoomById(id);
 
             return Ok(room);
+        }
+        [HttpGet("Get-room-available")]
+        public async Task<ActionResult> getRoomAvailable()
+        {
+            return Ok();
         }
         [HttpPost("create-room")]
         public async Task<ActionResult<Room>> CreateRoom(CreateRoomDto request)

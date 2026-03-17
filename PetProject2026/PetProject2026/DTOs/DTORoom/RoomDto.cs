@@ -1,4 +1,4 @@
-﻿namespace PetProject2026.DTOs
+﻿namespace PetProject2026.DTOs.DTORoom
 {
     public class RoomDto
     {

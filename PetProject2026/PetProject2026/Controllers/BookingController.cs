@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PetProject2026.Context;
-using PetProject2026.DTOs;
+using PetProject2026.DTOs.DTOBooking;
 using PetProject2026.Models;
 using PetProject2026.Services.Implementations;
 
 namespace PetProject2026.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BookingController : ControllerBase
@@ -51,6 +53,7 @@ namespace PetProject2026.Controllers
            var booking = _bookingService.DeleteBookingById(id);
             return NoContent();
         }
+
 
         
     }
