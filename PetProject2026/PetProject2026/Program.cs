@@ -23,6 +23,7 @@ builder.Services.AddDbContext<BookingContext>(options =>
 builder.Services.AddScoped<IRoomService, ImplsRoomService>();
 builder.Services.AddScoped<IBookingService, ImplsBookingService>();
 builder.Services.AddScoped<IAuthorService, ImplsAuthorService>();
+builder.Services.AddScoped<IHotelService, ImplsHotelService>();
 // Cau hinh JWT bao mat cua server
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
