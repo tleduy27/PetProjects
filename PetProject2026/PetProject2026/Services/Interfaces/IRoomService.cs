@@ -10,5 +10,6 @@ namespace PetProject2026.Services.Implementations
         Task<UpdateRoomDto> UpdateRoom(int id, UpdateRoomDto request);
         Task<Room> GetRoomById(int id);
         Task DeleteRoomById(int id);
+        Task<List<Room>> SearchRooms(RoomSearchRequest request);
     }
 }

@@ -238,15 +238,33 @@ namespace PetProject2026.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("roomType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("roomTypeId")
+                        .HasColumnType("int");
 
                     b.HasKey("roomId");
 
                     b.HasIndex("hotelId");
 
+                    b.HasIndex("roomTypeId");
+
                     b.ToTable("rooms");
+                });
+
+            modelBuilder.Entity("PetProject2026.Models.RoomType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("roomtypes");
                 });
 
             modelBuilder.Entity("PetProject2026.Models.Service", b =>
@@ -382,6 +400,14 @@ namespace PetProject2026.Migrations
                         .HasForeignKey("hotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PetProject2026.Models.RoomType", "RoomType")
+                        .WithMany()
+                        .HasForeignKey("roomTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoomType");
 
                     b.Navigation("hotel");
                 });

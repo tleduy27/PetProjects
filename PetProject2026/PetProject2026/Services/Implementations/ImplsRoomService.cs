@@ -79,6 +79,32 @@ namespace PetProject2026.Services.Interfaces
             await _bookingContext.SaveChangesAsync();
         }
 
-        
+        public async Task<List<Room>> SearchRooms(RoomSearchRequest request)
+        {
+            var query = _bookingContext.rooms
+                .Include(r => r.RoomType)
+                .AsQueryable();
+
+            if (request.RoomTypeId.HasValue)
+            {
+                query = query.Where(r => r.roomTypeId == request.RoomTypeId.Value);
+            }
+
+            if (request.PriceMin.HasValue)
+            {
+                query = query.Where(r => r.price >= request.PriceMin);
+            }
+            if (request.PriceMin.HasValue)
+            {
+                query = query.Where(r => r.price <= request.PriceMax);
+            }
+            if (request.HotelId.HasValue)
+            {
+                query = query.Where(r => r.hotelId == request.HotelId);
+            }
+
+
+            return await query.ToListAsync();
+        }
     }
 }

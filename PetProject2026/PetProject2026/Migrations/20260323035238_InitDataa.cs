@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PetProject2026.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitDataa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -59,6 +59,19 @@ namespace PetProject2026.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "roomtypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_roomtypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "services",
                 columns: table => new
                 {
@@ -71,28 +84,6 @@ namespace PetProject2026.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_services", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "rooms",
-                columns: table => new
-                {
-                    roomId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    roomType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    roomName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    hotelId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_rooms", x => x.roomId);
-                    table.ForeignKey(
-                        name: "FK_rooms_hotel_hotelId",
-                        column: x => x.hotelId,
-                        principalTable: "hotel",
-                        principalColumn: "hotelID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,6 +104,34 @@ namespace PetProject2026.Migrations
                         column: x => x.roleId,
                         principalTable: "roles",
                         principalColumn: "roleId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "rooms",
+                columns: table => new
+                {
+                    roomId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    roomName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    hotelId = table.Column<int>(type: "int", nullable: false),
+                    roomTypeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_rooms", x => x.roomId);
+                    table.ForeignKey(
+                        name: "FK_rooms_hotel_hotelId",
+                        column: x => x.hotelId,
+                        principalTable: "hotel",
+                        principalColumn: "hotelID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_rooms_roomtypes_roomTypeId",
+                        column: x => x.roomTypeId,
+                        principalTable: "roomtypes",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -270,6 +289,11 @@ namespace PetProject2026.Migrations
                 column: "hotelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_rooms_roomTypeId",
+                table: "rooms",
+                column: "roomTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_usedservices_bookedRoomID",
                 table: "usedservices",
                 column: "bookedRoomID");
@@ -314,6 +338,9 @@ namespace PetProject2026.Migrations
 
             migrationBuilder.DropTable(
                 name: "hotel");
+
+            migrationBuilder.DropTable(
+                name: "roomtypes");
 
             migrationBuilder.DropTable(
                 name: "roles");

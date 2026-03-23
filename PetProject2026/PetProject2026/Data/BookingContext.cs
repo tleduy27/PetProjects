@@ -20,5 +20,6 @@ namespace PetProject2026.Context
         public DbSet<Hotel> hotel { get; set; }
         public DbSet<Service> services { get; set; }
         public DbSet<UsedService> usedservices { get; set; }
+        public DbSet<RoomType> roomtypes { get; set; }
     }
 }

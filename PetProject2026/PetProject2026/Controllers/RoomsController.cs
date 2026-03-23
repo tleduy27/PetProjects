@@ -67,10 +67,15 @@ namespace PetProject2026.Controllers
             await _roomService.DeleteRoomById(id);
             return NoContent();
         }
+        [HttpGet]
+        public async Task<IActionResult> GetRooms([FromQuery] RoomSearchRequest request)
+        {
+            var result = await _roomService.SearchRooms(request);
+            return Ok(result);
+        }
 
-        
 
-        
+
 
     }
 }
